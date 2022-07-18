@@ -1,0 +1,6 @@
+{
+  "filter": "modal.filter",
+  "error": "modal.error",
+  "result": "modal.result",
+  "close": "close"
+}

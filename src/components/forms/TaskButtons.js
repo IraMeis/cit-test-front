@@ -1,4 +1,4 @@
-const TaskButtons = () => {
+const TaskButtons = (props) => {
   return(
       <div>
           <button type="button" className="btn btn-outline-dark btn-block">
@@ -6,7 +6,9 @@ const TaskButtons = () => {
           <hr/>
           <button type="button" className="btn btn-outline-info btn-block">
               Сохранить</button>
-          <button type="button" className="btn btn-outline-info btn-block">
+          <button type="button"
+                  onClick={props.onClikDownload}
+                  className="btn btn-outline-info btn-block">
               Загрузить</button>
           <button type="button" className="btn btn-outline-info btn-block">
               Экспортировать</button>

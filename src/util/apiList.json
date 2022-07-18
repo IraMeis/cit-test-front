@@ -1,0 +1,5 @@
+{
+  "filter": "/api/filter",
+  "substring": "/api/substring",
+  "square": "/api/square"
+}

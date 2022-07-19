@@ -1,15 +1,19 @@
 import Separator from "../const/Separator";
+import {useContext} from "react";
+import TaskContext from "../context/TaskContext";
 
-const TaskString = (props) => {
+const TaskString = () => {
+
+    const taskParams = useContext(TaskContext);
 
     const onChangeArr1 = (e) => {
         const h = e.target.value;
-        props.setArr1(h);
+        taskParams.setArr1(h);
     }
 
     const onChangeArr2 = (e) => {
         const h = e.target.value;
-        props.setArr2(h);
+        taskParams.setArr2(h);
     }
 
     return (
@@ -18,9 +22,9 @@ const TaskString = (props) => {
             <div className="input-large">
                     <textarea className="md-textarea md-textarea-auto form-control"
                               onChange={onChangeArr1}
+                              value={taskParams.arr1}
                               placeholder="Вводите значения через пробел"
                               rows="3">
-                        {props.arr1}
                     </textarea>
             </div>
 
@@ -30,9 +34,9 @@ const TaskString = (props) => {
             <div className="input-large">
                     <textarea className="md-textarea md-textarea-auto form-control"
                               onChange={onChangeArr2}
+                              value={taskParams.arr2}
                               placeholder="Вводите значения через пробел"
                               rows="3">
-                        {props.arr2}
                     </textarea>
             </div>
 

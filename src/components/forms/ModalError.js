@@ -2,18 +2,18 @@ import {Modal} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import React from "react";
 
-const ModalError = (props) => {
+const ModalError = ({handleCloseErr, errorMess, show, head}) => {
   return (
-      <Modal show={props.show} onHide={props.handleCloseErr} backdrop="static">
+      <Modal show={show} onHide={handleCloseErr} backdrop="static">
           <Modal.Header>
-              <Modal.Title>{props.head != null ? props.head : "Something went wrong..."}</Modal.Title>
-              <button type="button" className="close" data-dismiss="modal" onClick={props.handleCloseErr}>
+              <Modal.Title>{head != null ? head : "Something went wrong..."}</Modal.Title>
+              <button type="button" className="close" data-dismiss="modal" onClick={handleCloseErr}>
                   <span aria-hidden="true">&times;</span>
               </button>
           </Modal.Header>
-          <Modal.Body>{props.err}</Modal.Body>
+          <Modal.Body>{errorMess}</Modal.Body>
           <Modal.Footer>
-              <Button variant="secondary" onClick={props.handleCloseErr}>
+              <Button variant="secondary" onClick={handleCloseErr}>
                   Close
               </Button>
           </Modal.Footer>

@@ -1,13 +1,16 @@
 import {Modal} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import UuidInput from "./UuidInput";
 import FromAndTo from "./FromAndTo";
 import Radio3 from "./Radio3";
 import FilterService from "../../../service/filter.service";
 import makeSearchRequest from "./filter.creator";
+import ModalFilterContext from "../../context/ModalFilterContext";
 
-const ModalFilter = (props) => {
+const ModalFilter = ({show, setResponseData, setErrorMess}) => {
+
+    const modalContext = useContext(ModalFilterContext);
 
     const [uuid, setUuid] = useState("");
     const onChangeUuid = (e) => {
@@ -35,21 +38,21 @@ const ModalFilter = (props) => {
         FilterService.getFilteredTasks(makeSearchRequest(dfrom, dto, uuid, valueType))
             .then(
                 (response) => {
-                    props.setResp(response.data);
-                    props.handleShowResult();
+                    setResponseData(response.data);
+                    modalContext.handleClose();
                 })
             .catch(
                 (err) => {
-                    props.setErr(err.message);
-                    props.handleShowError();
-                });
+                    setErrorMess(err.message);
+                    modalContext.handleShowModalErr();
+                })
     };
 
     return (
-        <Modal show={props.show} onHide={props.handleCloseF} backdrop="static">
+        <Modal show={show} onHide={modalContext.handleClose} backdrop="static">
             <Modal.Header>
                 <Modal.Title>Выберите параметры для фильтрации</Modal.Title>
-                <button type="button" className="close" data-dismiss="modal" onClick={props.handleCloseF}>
+                <button type="button" className="close" data-dismiss="modal" onClick={modalContext.handleClose}>
                     <span aria-hidden="true">&times;</span>
                 </button>
             </Modal.Header>
@@ -68,12 +71,13 @@ const ModalFilter = (props) => {
 
                 <Radio3 label={"Тип задачи"} id={"2"}
                                              l1={"Подстроки"} l2={"Магический квадрат"} l3={"Не важно"}
-                                             ch={changeValueType} chval={valueType}/>
+                                             onChange={changeValueType}
+                                             changeVal={valueType}/>
 
             </Modal.Body>
 
             <Modal.Footer>
-                <Button variant="secondary" onClick={props.handleCloseF}>
+                <Button variant="secondary" onClick={modalContext.handleClose}>
                     Отмена
                 </Button>
                 <Button variant="primary" onClick={handleFilter}>

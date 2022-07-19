@@ -1,12 +1,12 @@
-const UuidInput = (props) => {
+const UuidInput = ({label, onChangeUuid}) => {
   return(
       <div className="form-group">
-          <label>{props.label}</label>
+          <label>{label}</label>
           <input type="text"
                  className="form-control"
                  id="inputAddress"
                  placeholder={"uuid"}
-                 onChange={props.onChangeUuid}
+                 onChange={onChangeUuid}
           />
       </div>
   );

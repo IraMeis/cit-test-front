@@ -1,4 +1,4 @@
-const FromAndTo = ({label, handleFrom, handleTo}) => {
+const FromAndTo = ({label, handleFrom, handleTo, valueFrom, valueTo}) => {
     return (
         <div>
             <label>{label}</label>
@@ -7,6 +7,7 @@ const FromAndTo = ({label, handleFrom, handleTo}) => {
                     <label htmlFor="inputEmail4">с</label>
                     <input type="date"
                            className="form-control"
+                           value={valueFrom}
                            onChange={handleFrom}/>
                 </div>
                 <div className="form-group col-md-2"/>
@@ -14,6 +15,7 @@ const FromAndTo = ({label, handleFrom, handleTo}) => {
                     <label htmlFor="inputPassword4">по</label>
                     <input type="date"
                            className="form-control"
+                           value={valueTo}
                            onChange={handleTo}/>
                 </div>
             </div>

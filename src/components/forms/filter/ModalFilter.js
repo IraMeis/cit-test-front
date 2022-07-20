@@ -7,15 +7,18 @@ import Radio3 from "./Radio3";
 import FilterService from "../../../service/filter.service";
 import makeSearchRequest from "./filter.creator";
 import ModalFilterContext from "../../context/ModalFilterContext";
+import {validate as uuidValidate} from "uuid";
 
-const ModalFilter = ({show, setResponseData, setErrorMess}) => {
+const ModalFilter = ({show, setResponseData}) => {
 
     const modalContext = useContext(ModalFilterContext);
+    const [formValidMess, setFormValidMess] = useState("");
 
     const [uuid, setUuid] = useState("");
     const onChangeUuid = (e) => {
         const content = e.target.value;
         setUuid(content);
+        setFormValidMess("");
     };
 
     const [dfrom, setDfrom] = useState();
@@ -35,15 +38,18 @@ const ModalFilter = ({show, setResponseData, setErrorMess}) => {
     };
 
     const handleFilter = () => {
-        FilterService.getFilteredTasks(makeSearchRequest(dfrom, dto, uuid, valueType))
+        if (!uuidValidate(uuid) && uuid !== "")
+            setFormValidMess("Inconvenient UUID!");
+        else
+            FilterService.getFilteredTasks(makeSearchRequest(dfrom, dto, uuid, valueType))
             .then(
                 (response) => {
                     setResponseData(response.data);
-                    modalContext.handleClose();
+                    modalContext.handleShowModalR();
                 })
             .catch(
                 (err) => {
-                    setErrorMess(err.message);
+                    modalContext.setErrorMess(err.message);
                     modalContext.handleShowModalErr();
                 })
     };
@@ -59,12 +65,23 @@ const ModalFilter = ({show, setResponseData, setErrorMess}) => {
 
             <Modal.Body>
 
+                {formValidMess && (
+                    <div className="form-group">
+                        <div className="alert alert-danger" role="alert">
+                            {formValidMess}
+                        </div>
+                    </div>
+                )}
+
                 <UuidInput label={"Uuid задачи"}
+                           value={uuid}
                            onChangeUuid={onChangeUuid}/>
                 <hr/>
 
                 <FromAndTo
                     label="Дата создания задачи"
+                    valueFrom={dfrom}
+                    valueTo={dto}
                     handleFrom ={onChangeDfrom}
                     handleTo={onChangeDto}/>
                 <hr/>

@@ -1,4 +1,4 @@
-const UuidInput = ({label, onChangeUuid}) => {
+const UuidInput = ({label, onChangeUuid, value}) => {
   return(
       <div className="form-group">
           <label>{label}</label>
@@ -6,6 +6,7 @@ const UuidInput = ({label, onChangeUuid}) => {
                  className="form-control"
                  id="inputAddress"
                  placeholder={"uuid"}
+                 value={value}
                  onChange={onChangeUuid}
           />
       </div>

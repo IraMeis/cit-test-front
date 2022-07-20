@@ -9,7 +9,7 @@ const Radio3 = ({label, onChange, changeVal, l1, l2, l3, id}) => {
                        name={`Radio3${id}`}
                        id="flexRadioDefault1"
                        onChange={onChange}
-                       checked={changeVal === 1}
+                       checked={changeVal == 1}
                 />
                 <label className="form-check-label" htmlFor="flexRadioDefault1">{l1}</label>
             </div>
@@ -20,7 +20,7 @@ const Radio3 = ({label, onChange, changeVal, l1, l2, l3, id}) => {
                        name={`Radio3${id}`}
                        id="flexRadioDefault2"
                        onChange={onChange}
-                       checked={changeVal === 2}
+                       checked={changeVal == 2}
                 />
                 <label className="form-check-label" htmlFor="flexRadioDefault2">{l2}</label>
             </div>
@@ -31,7 +31,7 @@ const Radio3 = ({label, onChange, changeVal, l1, l2, l3, id}) => {
                        name={`Radio3${id}`}
                        id="flexRadioDefault3"
                        onChange={onChange}
-                       checked={changeVal === 3}
+                       checked={changeVal == 3}
                 />
                 <label className="form-check-label" htmlFor="flexRadioDefault3">{l3}</label>
             </div>

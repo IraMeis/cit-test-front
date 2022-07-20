@@ -1,5 +1,6 @@
 {
   "filter": "/api/filter",
   "substring": "/api/substring",
-  "square": "/api/square"
+  "square": "/api/square",
+  "file": "/api/file"
 }

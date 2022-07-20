@@ -1,30 +1,35 @@
-import types from "../../../util/taskTypes.json";
 import tasks from "../../../util/taskTypes.json";
 import Separator from "../../const/Separator";
 import React, {useContext} from "react";
 import TaskContext from "../../context/TaskContext";
 import ModalFilterContext from "../../context/ModalFilterContext";
 import MatrixUtil from "../../../util/functions/matrix.build";
+import SolveUploadedService from "../../../util/functions/SolveUploaded";
 
 const CommonTaskStructure = ({type, typeLabel, uuid, time, arr1, arr2, matrix}) => {
 
     const modalContext = useContext(ModalFilterContext);
     const taskParams = useContext(TaskContext);
 
-    const handleSolveSquare = () => {
-        taskParams.setTaskType(types.square.code);
-        taskParams.setArr1('');
-        taskParams.setArr2('');
-        taskParams.setInputMatrix(MatrixUtil.makeMatrixStrings(matrix, tasks.square.matrixSize).join('\n'));
-        modalContext.handleClose();
+    function handleSolveSquare () {
+        SolveUploadedService.handleSolveSquare(
+            matrix,
+            taskParams.setTaskType,
+            taskParams.setArr1,
+            taskParams.setArr2,
+            taskParams.setInputMatrix,
+            modalContext.handleClose);
     };
 
-    const handleSolveSubstring = () => {
-        taskParams.setTaskType(types.substring.code);
-        taskParams.setInputMatrix('');
-        taskParams.setArr1(arr1.join(' '));
-        taskParams.setArr2(arr2.join(' '));
-        modalContext.handleClose();
+    function handleSolveSubstring () {
+        SolveUploadedService.handleSolveSubstring(
+            arr1,
+            arr2,
+            taskParams.setTaskType,
+            taskParams.setArr1,
+            taskParams.setArr2,
+            taskParams.setInputMatrix,
+            modalContext.handleClose);
     };
 
     return(
@@ -73,9 +78,11 @@ const CommonTaskStructure = ({type, typeLabel, uuid, time, arr1, arr2, matrix}) 
 
             <div className="col-md-12 text-center">
                 <button type="button"
-                        onClick={type == types.square.code ?
-                            handleSolveSquare :
-                            (type == types.substring.code ? handleSolveSubstring : undefined)}
+                        onClick={type == tasks.square.code ?
+                            () => handleSolveSquare() :
+                            (type == tasks.substring.code ?
+                                () => handleSolveSubstring() :
+                                undefined)}
                         className="btn btn-outline-info btn-block">
                     Посчитать
                 </button>

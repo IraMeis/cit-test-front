@@ -11,7 +11,9 @@ const ModalError = ({handleCloseErr, errorMess, show, head}) => {
                   <span aria-hidden="true">&times;</span>
               </button>
           </Modal.Header>
-          <Modal.Body>{errorMess}</Modal.Body>
+          <Modal.Body>
+              {errorMess != null ? errorMess : "No description found."}
+          </Modal.Body>
           <Modal.Footer>
               <Button variant="secondary" onClick={handleCloseErr}>
                   Close

@@ -1,6 +1,7 @@
 {
   "filter": "modal.filter",
-  "error": "modal.error",
-  "result": "modal.result",
+  "resultFilter": "modal.resultFilter",
+  "fileInput": "modal.inputFile",
+  "errorCommon": "modal.errorCommon",
   "close": "close"
 }

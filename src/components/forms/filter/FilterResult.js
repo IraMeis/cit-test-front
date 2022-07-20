@@ -31,9 +31,10 @@ const ModalFilterResult = ({show, responseData}) => {
     }
 
     function MapperTasks (){
+        const params = useContext(ResponseParams);
         return (
             <div className="container">
-                {useContext(ResponseParams).map(ResultList)}
+                {params.length === 0 ? "No acceptable data found" : params.map(ResultList)}
             </div>
         );
     }

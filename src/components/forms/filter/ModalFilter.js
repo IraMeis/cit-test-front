@@ -5,7 +5,7 @@ import UuidInput from "./UuidInput";
 import FromAndTo from "./FromAndTo";
 import Radio3 from "./Radio3";
 import FilterService from "../../../service/filter.service";
-import makeSearchRequest from "./filter.creator";
+import makeSearchRequest from "../../../util/functions/filter.creator";
 import ModalFilterContext from "../../context/ModalFilterContext";
 import {validate as uuidValidate} from "uuid";
 

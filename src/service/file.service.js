@@ -4,10 +4,9 @@ import api from "../util/apiList.json";
 
 const API_URL = bask.server + api.file;
 
-const uploadFile = (file, fileName) => {
+const uploadFile = (file) => {
     let formData = new FormData();
     formData.append("file", file);
-    formData.append("name", fileName);
     return axios.patch(API_URL +"/upload", formData, {
         headers: {
             "Content-Type": "multipart/form-data"
@@ -15,8 +14,22 @@ const uploadFile = (file, fileName) => {
     });
 };
 
+const downloadFileSQ = (fileObj) => {
+    return axios.patch(API_URL +`/download/SQ`, fileObj,{
+        responseType: 'blob',
+    });
+};
+
+const downloadFileSUB = (fileObj) => {
+    return axios.patch(API_URL +`/download/SUB`, fileObj,{
+        responseType: 'blob',
+    });
+};
+
 const FileService = {
-  uploadFile
+    uploadFile,
+    downloadFileSQ,
+    downloadFileSUB
 }
 
 export default FileService;

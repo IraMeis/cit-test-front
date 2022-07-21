@@ -1,11 +1,13 @@
 {
   "substring": {
     "code": 1,
-    "label": "Задача поиска подстрок"
+    "label": "Задача поиска подстрок",
+    "enLabel": "Substring"
   },
   "square": {
     "code": 2,
     "label": "Задача магического квадрата",
+    "enLabel": "Square",
     "matrixSize" : 3
   }
 }

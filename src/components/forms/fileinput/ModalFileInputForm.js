@@ -28,7 +28,7 @@ const ModalFileInputForm = ({show}) => {
     }
 
      const handleUpload = () => {
-        FileService.uploadFile(currentFile, currentFileName)
+        FileService.uploadFile(currentFile)
             .then((response) => {
                 if(response.data) {
                     if(response.data.typeCode && response.data.typeCode===tasks.square.code &&

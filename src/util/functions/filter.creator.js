@@ -1,4 +1,4 @@
-import types from "../../../util/taskTypes.json";
+import types from "../taskTypes.json";
 
 const makeSearchRequest = (dfrom, dto, uuid, type) => {
     let list = [];

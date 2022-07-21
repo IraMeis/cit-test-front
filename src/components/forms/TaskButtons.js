@@ -4,6 +4,9 @@ import ModalFilterBlock from "./filter/ModalFilterBlock";
 import ModalFilterContext from "../context/ModalFilterContext";
 import ModalInputFileBlock from "./fileinput/ModalInputFileBlock";
 import ModalErrorBlock from "./ModalErrorBlock";
+import ExportBlock from "./export/ExportBlock";
+import ImportBlock from "./fileinput/ImportBlock";
+import SolveBlock from "./solve/SolveBlock";
 
 const TaskButtons = () => {
 
@@ -62,21 +65,12 @@ const TaskButtons = () => {
                            errorMess ={errorMess}
                            handleCloseError={handleShowModalPrev}/>
           <div>
-              <button type="button" className="btn btn-outline-dark btn-block">
-                  Посчитать</button>
+              <SolveBlock/>
               <hr/>
-              <button type="button" className="btn btn-outline-info btn-block">
-                  Сохранить</button>
-              <button type="button"
-                      onClick={handleShowModalF}
-                      className="btn btn-outline-info btn-block">
-                  Загрузить</button>
-              <button type="button" className="btn btn-outline-info btn-block">
-                  Экспортировать</button>
-              <button type="button"
-                      onClick={handleShowModalInputFile}
-                      className="btn btn-outline-info btn-block">
-                  Импортировать</button>
+              <ExportBlock/>
+              <hr/>
+              <ImportBlock handleShowModalF={handleShowModalF}
+                           handleShowModalInputFile={handleShowModalInputFile}/>
           </div>
       </div>
       </ModalFilterContext.Provider>

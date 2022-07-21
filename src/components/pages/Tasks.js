@@ -9,7 +9,7 @@ import TaskContext from "../context/TaskContext";
 
 const Tasks = () => {
 
-    const [taskType, setTaskType] = useState(1);
+    const [taskType, setTaskType] = useState(types.substring.code);
     const onChangeType = (e) => {
         if(taskType == types.substring.code){
             setArr1('');

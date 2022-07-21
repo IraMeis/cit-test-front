@@ -5,6 +5,7 @@ import FileService from "../../../service/file.service";
 import fileDownload from 'js-file-download';
 import ModalFilterContext from "../../context/ModalFilterContext";
 import StringToObj from "../../../util/functions/StringToObj";
+import TaskService from "../../../service/task.service";
 
 const ExportBlock = () => {
 
@@ -14,6 +15,11 @@ const ExportBlock = () => {
     function openErr(str) {
         modalContext.setErrorMess(str);
         modalContext.handleShowModalErr();
+    }
+
+    function openOk(str) {
+        modalContext.setInfoMess(str);
+        modalContext.handleShowModalInfo();
     }
 
     function setErrorResp (err) {
@@ -43,7 +49,38 @@ const ExportBlock = () => {
     }
 
     const handleExportDB = () => {
-
+        if(taskParams.taskType == types.substring.code) {
+            if(!checkArraysIsNotEmpty() ||
+                StringToObj.stringIntoStringArray(taskParams.arr1).length === 0 ||
+                StringToObj.stringIntoStringArray(taskParams.arr2).length === 0 ){
+                openErr("Некорректные данные!");
+            }
+            else
+                return TaskService.createTaskSUB({
+                    array1 : StringToObj.stringIntoStringArray(taskParams.arr1),
+                    array2 : StringToObj.stringIntoStringArray(taskParams.arr2),
+                    typeCode : types.substring.code})
+                    .then((response) => {
+                        openOk("Данные сохранены!");
+                    }).catch((err) => {
+                        setErrorResp(err);
+                    });
+        }
+        else if (taskParams.taskType == types.square.code) {
+            if(!checkMatrixIsNotEmpty() ||
+                StringToObj.stringIntoMatrix(taskParams.inputMatrix).length === 0){
+                openErr("Некорректные данные!");
+            }
+            else
+                return TaskService.createTaskSQ({
+                    inputMatrix: StringToObj.stringIntoMatrix(taskParams.inputMatrix),
+                    typeCode: types.square.code
+                }).then((response) => {
+                        openOk("Данные сохранены!");
+                    }).catch((err) => {
+                        setErrorResp(err);
+                    });
+        }
     }
 
     const handleExportFile = () => {
@@ -84,7 +121,9 @@ const ExportBlock = () => {
 
     return (
         <div>
-            <button type="button" className="btn btn-outline-info btn-block">
+            <button type="button"
+                    onClick={handleExportDB}
+                    className="btn btn-outline-info btn-block">
                 Сохранить</button>
             <button type="button"
                     onClick={handleExportFile}

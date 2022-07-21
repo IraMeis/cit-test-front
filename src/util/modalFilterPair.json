@@ -3,5 +3,6 @@
   "resultFilter": "modal.resultFilter",
   "fileInput": "modal.inputFile",
   "errorCommon": "modal.errorCommon",
+  "infoCommon" : "modal.infoCommon",
   "close": "close"
 }

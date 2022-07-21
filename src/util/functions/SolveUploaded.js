@@ -2,19 +2,31 @@ import types from "../taskTypes.json";
 import MatrixUtil from "./matrix.build";
 import tasks from "../taskTypes.json";
 
-const handleSolveSquare = (matrix, setTaskType, setArr1, setArr2, setInputMatrix, handleClose) => {
+const handleSolveSquare = (matrix, outMatrix,
+                           setTaskType,
+                           setArr1, setArr2, setArrRes,
+                           setInputMatrix, setOutMatrix,
+                           handleClose) => {
     setTaskType(types.square.code);
     setArr1('');
     setArr2('');
+    setArrRes('');
     setInputMatrix(MatrixUtil.makeMatrixStrings(matrix, tasks.square.matrixSize).join('\n'));
+    setOutMatrix(MatrixUtil.makeMatrixStrings(outMatrix, tasks.square.matrixSize).join('\n'));
     handleClose();
 };
 
-const handleSolveSubstring = (arr1, arr2, setTaskType, setArr1, setArr2, setInputMatrix, handleClose) => {
+const handleSolveSubstring = (arr1, arr2, arrRes,
+                              setTaskType,
+                              setArr1, setArr2, setArrRes,
+                              setInputMatrix, setOutMatrix,
+                              handleClose) => {
     setTaskType(types.substring.code);
     setInputMatrix('');
+    setOutMatrix('');
     setArr1(arr1.join(' '));
     setArr2(arr2.join(' '));
+    setArrRes(arrRes.join(' '));
     handleClose();
 };
 

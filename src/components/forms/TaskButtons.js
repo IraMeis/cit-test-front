@@ -7,12 +7,14 @@ import ModalErrorBlock from "./ModalErrorBlock";
 import ExportBlock from "./export/ExportBlock";
 import ImportBlock from "./fileinput/ImportBlock";
 import SolveBlock from "./solve/SolveBlock";
+import ModalInfoBlock from "./ModalInfoBlock";
 
 const TaskButtons = () => {
 
     const [modalButtonsState, setModalButtonsState] = useState(modals.close);
     const [modalButtonsStatePrev, setModalButtonsStatePrev] = useState(modals.close);
     const [errorMess, setErrorMess] = useState("");
+    const [infoMess, setInfoMess] = useState("");
 
     //модалки кнопки выгрузки из бд
     const handleShowModalF = () => {
@@ -28,6 +30,11 @@ const TaskButtons = () => {
     const handleShowModalErr = () =>  {
         setModalButtonsStatePrev(modalButtonsState);
         setModalButtonsState(modals.errorCommon);
+    }
+    //модалка информации
+    const handleShowModalInfo = () =>  {
+        setModalButtonsStatePrev(modalButtonsState);
+        setModalButtonsState(modals.infoCommon);
     }
 
     //закрытие всех модалок кнопок
@@ -51,8 +58,10 @@ const TaskButtons = () => {
   return(
       <ModalFilterContext.Provider value={{
           setErrorMess : setErrorMess,
+          setInfoMess : setInfoMess,
           handleShowModalF : handleShowModalF,
           handleShowModalErr : handleShowModalErr,
+          handleShowModalInfo : handleShowModalInfo,
           handleShowModalR : handleShowModalR,
           handleClose : handleClose,
           handleShowModalInputFile : handleShowModalInputFile,
@@ -64,6 +73,9 @@ const TaskButtons = () => {
           <ModalErrorBlock modalErrorState={modalButtonsState}
                            errorMess ={errorMess}
                            handleCloseError={handleShowModalPrev}/>
+          <ModalInfoBlock modalInfoState={modalButtonsState}
+                          infoMess={infoMess}
+                          handleCloseInfo={handleClose}/>
           <div>
               <SolveBlock/>
               <hr/>

@@ -5,21 +5,31 @@ import api from "../util/apiList.json";
 const API_URL_SQUARE = bask.server + api.square;
 const API_URL_SUBSTRING = bask.server + api.substring;
 
-const createTask = (url, obj) => {
+const post = (url, obj) => {
     return axios.post(url, obj);
 };
 
 const createTaskSQ = (obj) => {
-    return createTask(API_URL_SQUARE + "/create", obj);
+    return post(API_URL_SQUARE + "/create", obj);
 };
 
 const createTaskSUB = (obj) => {
-    return createTask(API_URL_SUBSTRING + "/create", obj);
+    return post(API_URL_SUBSTRING + "/create", obj);
+};
+
+const solveSUB = (obj) => {
+    return post(API_URL_SUBSTRING + "/solve", obj);
+}
+
+const solveSQ = (obj) => {
+    return post(API_URL_SQUARE + "/solve", obj);
 };
 
 const TaskService = {
     createTaskSUB,
-    createTaskSQ
+    createTaskSQ,
+    solveSQ,
+    solveSUB
 };
 
 export default TaskService;

@@ -20,7 +20,7 @@ const TaskSquare = () => {
                               onChange={onChangeInputMatr}
                               value={taskParams.inputMatrix}
                               placeholder="Вводите значения через пробел"
-                              rows="3">
+                              rows="5">
                     </textarea>
                 </div>
             </div>
@@ -31,7 +31,8 @@ const TaskSquare = () => {
                 <p> <strong>Результат:</strong> </p>
                 <div className="input-large">
                     <textarea className="md-textarea md-textarea-auto form-control"
-                              rows="3">
+                              value={taskParams.outputMatrix}
+                              rows="5">
                     </textarea>
                 </div>
             </div>

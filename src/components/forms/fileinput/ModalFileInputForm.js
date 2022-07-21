@@ -32,24 +32,31 @@ const ModalFileInputForm = ({show}) => {
             .then((response) => {
                 if(response.data) {
                     if(response.data.typeCode && response.data.typeCode===tasks.square.code &&
-                        response.data.inputMatrix &&
-                        response.data.inputMatrix.length===tasks.square.matrixSize*tasks.square.matrixSize)
+                        response.data.inputMatrix && response.data.outputMatrix &&
+                        response.data.inputMatrix.length===tasks.square.matrixSize*tasks.square.matrixSize &&
+                        response.data.outputMatrix.length===tasks.square.matrixSize*tasks.square.matrixSize)
                         SolveUploadedService.handleSolveSquare(
                             response.data.inputMatrix,
+                            response.data.outputMatrix,
                             taskParams.setTaskType,
                             taskParams.setArr1,
                             taskParams.setArr2,
+                            taskParams.setArrRes,
                             taskParams.setInputMatrix,
+                            taskParams.setOutputMatrix,
                             modalContext.handleClose);
                     else if (response.data.typeCode && response.data.typeCode===tasks.substring.code &&
-                        response.data.array1 && response.data.array2)
+                        response.data.array1 && response.data.array2 && response.data.arrayResult)
                         SolveUploadedService.handleSolveSubstring(
                             response.data.array1,
                             response.data.array2,
+                            response.data.arrayResult,
                             taskParams.setTaskType,
                             taskParams.setArr1,
                             taskParams.setArr2,
+                            taskParams.setArrRes,
                             taskParams.setInputMatrix,
+                            taskParams.setOutputMatrix,
                             modalContext.handleClose);
                     else showError("Got invalid data type");
                 }

@@ -45,6 +45,7 @@ const TaskString = () => {
             <p> <strong>Результат R:</strong> </p>
             <div className="input-large">
                     <textarea className="md-textarea md-textarea-auto form-control"
+                              value={taskParams.arrRes}
                               rows="3">
                     </textarea>
             </div>

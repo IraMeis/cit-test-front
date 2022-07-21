@@ -18,7 +18,7 @@ const ExportBlock = () => {
 
     function setErrorResp (err) {
         if(err.response && err.response.status && err.response.status === 406)
-            openErr("Get incorrect data");
+            openErr("Server reports of getting incorrect data");
         else
             openErr(err.message);
     }

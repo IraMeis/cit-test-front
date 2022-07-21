@@ -8,7 +8,7 @@ const stringIntoMatrix = (str) =>{
 
     let res = [];
     for (let i = 0; i < arr.length; ++i) {
-        if (!/^\d+$/.test(arr[i])) {
+        if (!/^\d$/.test(arr[i])) {
             return [];
         }
         else

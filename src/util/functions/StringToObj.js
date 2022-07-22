@@ -1,6 +1,12 @@
 import types from "../taskTypes.json";
 
 const stringIntoMatrix = (str) =>{
+
+    for (let i = 1; i < 10; ++i) {
+        if(str.indexOf(String(i)) === -1 || str.indexOf(String(i)) !== str.lastIndexOf(String(i)))
+            return [];
+    }
+
     const arr = stringIntoStringArray(str);
 
     if(arr.length !== types.square.matrixSize*types.square.matrixSize)

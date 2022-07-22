@@ -1,12 +1,14 @@
 import {Link} from "react-router-dom";
+import Separator from "../const/Separator";
 
 const About = () => {
   return (
     <div className="container">
       <header className="jumbotron text-center">
-        <h3>Проект в процессе разработки</h3>
-          <h5>Когда-нибудь здесь появится описание, а пока есть ссылка на
-              <Link to={`/tasks`}> задачки</Link> </h5>
+          <h1>Test tasks</h1>
+          <Separator.Separator1/>
+          <h5>Сборка версии 1.0.0</h5>
+          <h5>Реализованы <Link to={`/tasks`}>две задачи</Link> </h5>
       </header>
     </div>
   );

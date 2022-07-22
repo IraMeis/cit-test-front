@@ -34,7 +34,8 @@ const ModalFileInputForm = ({show}) => {
                     if(response.data.typeCode && response.data.typeCode===tasks.square.code &&
                         response.data.inputMatrix && response.data.outputMatrix &&
                         response.data.inputMatrix.length===tasks.square.matrixSize*tasks.square.matrixSize &&
-                        response.data.outputMatrix.length===tasks.square.matrixSize*tasks.square.matrixSize)
+                        response.data.outputMatrix.length===tasks.square.matrixSize*tasks.square.matrixSize &&
+                        response.data.cost)
                         SolveUploadedService.handleSolveSquare(
                             response.data.inputMatrix,
                             response.data.outputMatrix,
@@ -44,7 +45,8 @@ const ModalFileInputForm = ({show}) => {
                             taskParams.setArrRes,
                             taskParams.setInputMatrix,
                             taskParams.setOutputMatrix,
-                            modalContext.handleClose);
+                            modalContext.handleClose,
+                            response.data.cost);
                     else if (response.data.typeCode && response.data.typeCode===tasks.substring.code &&
                         response.data.array1 && response.data.array2 && response.data.arrayResult)
                         SolveUploadedService.handleSolveSubstring(

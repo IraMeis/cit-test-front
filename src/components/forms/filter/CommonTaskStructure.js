@@ -24,7 +24,8 @@ const CommonTaskStructure = ({type, typeLabel, uuid, time, arr1, arr2, matrix}) 
                     taskParams.setArrRes,
                     taskParams.setInputMatrix,
                     taskParams.setOutputMatrix,
-                    modalContext.handleClose)
+                    modalContext.handleClose,
+                    response.data.cost)
             ).catch((err) => {
             modalContext.setErrorMess(err.message);
             modalContext.handleShowModalErr();

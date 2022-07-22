@@ -52,7 +52,8 @@ const SolveBlock = () => {
                         taskParams.setArrRes,
                         taskParams.setInputMatrix,
                         taskParams.setOutputMatrix,
-                        modalContext.handleClose)
+                        modalContext.handleClose,
+                        response.data.cost)
                 ).catch((err) => {
                 setErrorResp(err);
             });

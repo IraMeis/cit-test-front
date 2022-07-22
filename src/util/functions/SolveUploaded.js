@@ -6,13 +6,18 @@ const handleSolveSquare = (matrix, outMatrix,
                            setTaskType,
                            setArr1, setArr2, setArrRes,
                            setInputMatrix, setOutMatrix,
-                           handleClose) => {
+                           handleClose,
+                           cost) => {
     setTaskType(types.square.code);
     setArr1('');
     setArr2('');
     setArrRes('');
     setInputMatrix(MatrixUtil.makeMatrixStrings(matrix, tasks.square.matrixSize).join('\n'));
-    setOutMatrix(MatrixUtil.makeMatrixStrings(outMatrix, tasks.square.matrixSize).join('\n'));
+    if(cost === undefined)
+        setOutMatrix(MatrixUtil.makeMatrixStrings(outMatrix, tasks.square.matrixSize).join('\n'));
+    else
+        setOutMatrix(MatrixUtil.makeMatrixStrings(outMatrix, tasks.square.matrixSize).join('\n') +
+        "\n\nЦена преобразования: " + cost);
     handleClose();
 };
 

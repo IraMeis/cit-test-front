@@ -12,6 +12,14 @@ const TaskSquare = () => {
     }
 
     return (
+        <div>
+            <h6><strong>Суть задачи:</strong></h6>
+            <h6>Для входной матрицы находится стоимость преобразования в нормальный
+                <a href="https://ru.wikipedia.org/wiki/
+                %D0%9C%D0%B0%D0%B3%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9_
+                %D0%BA%D0%B2%D0%B0%D0%B4%D1%80%D0%B0%D1%82"> магический квадрат </a>
+                третьего порядкам и сам квадрат.</h6>
+            <Separator.Separator1/>
         <div className="row">
             <div className="col">
                 <p> <strong>Входная матрица:</strong> </p>
@@ -37,6 +45,7 @@ const TaskSquare = () => {
                 </div>
             </div>
 
+        </div>
         </div>
     );
 }

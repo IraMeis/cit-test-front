@@ -15,14 +15,14 @@ const ModalFilterResult = ({show, responseData}) => {
     const ResultList = (props) => {
         if(props.typeCode && props.typeCode === types.square.code &&
             props.inputMatrix && props.inputMatrix.length === tasks.square.matrixSize*tasks.square.matrixSize)
-            return (<CommonTaskStructure typeLabel={"Задача магического квадрата"}
+            return (<CommonTaskStructure typeLabel={tasks.square.label}
                                      type={props.typeCode}
                                      time={props.createdTimestamp}
                                      uuid={props.uuid}
                                      matrix={props.inputMatrix}/>);
         else if(props.typeCode && props.typeCode === types.substring.code &&
             props.array1 && props.array2 && props.array1.length > 0 && props.array2.length > 0)
-            return (<CommonTaskStructure typeLabel={"Задача подстроки"}
+            return (<CommonTaskStructure typeLabel={tasks.substring.label}
                                      type={props.typeCode}
                                      time={props.createdTimestamp}
                                      uuid={props.uuid}

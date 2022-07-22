@@ -6,6 +6,7 @@ import FileService from "../../../service/file.service";
 import TaskContext from "../../context/TaskContext";
 import SolveUploadedService from "../../../util/functions/SolveUploaded";
 import tasks from "../../../util/taskTypes.json";
+import strData from "../../../util/stringMessages.json";
 
 const ModalFileInputForm = ({show}) => {
 
@@ -20,11 +21,18 @@ const ModalFileInputForm = ({show}) => {
         setCurrentFileName(file.name);
     };
 
-    function showError (message) {
+    function openErr(message) {
         modalContext.setErrorMess(message);
         setCurrentFile(undefined);
         setCurrentFileName("");
         modalContext.handleShowModalErr();
+    }
+
+    function setErrorResp (err) {
+        if(err.response && err.response.status && err.response.status === 406)
+            openErr(strData.errorDataBackIn);
+        else
+            openErr(err.message);
     }
 
      const handleUpload = () => {
@@ -60,15 +68,11 @@ const ModalFileInputForm = ({show}) => {
                             taskParams.setInputMatrix,
                             taskParams.setOutputMatrix,
                             modalContext.handleClose);
-                    else showError("Got invalid data type");
+                    else openErr(strData.errorDataBackOut);
                 }
-                else showError("Got empty body");
             })
             .catch((err) => {
-                if(err.response && err.response.status && err.response.status === 406)
-                    showError("Get incorrect data from file");
-                else
-                    showError(err.message);
+                setErrorResp(err);
             });
     };
 

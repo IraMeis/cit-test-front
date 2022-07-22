@@ -6,6 +6,7 @@ import TaskContext from "../../context/TaskContext";
 import tasks from "../../../util/taskTypes.json";
 import StringToObj from "../../../util/functions/StringToObj";
 import types from "../../../util/taskTypes.json";
+import strData from "../../../util/stringMessages.json";
 
 const SolveBlock = () => {
 
@@ -19,7 +20,7 @@ const SolveBlock = () => {
 
     function setErrorResp (err) {
         if(err.response && err.response.status && err.response.status === 406)
-            openErr("Server reports of getting incorrect data");
+            openErr(strData.errorDataBackIn);
         else
             openErr(err.message);
     }
@@ -36,7 +37,7 @@ const SolveBlock = () => {
     function handleSolveSquare () {
         if(!checkMatrixIsNotEmpty() ||
             StringToObj.stringIntoMatrix(taskParams.inputMatrix).length === 0){
-            openErr("Некорректные данные!");
+            openErr(strData.errorDataFront);
         }
         else
             TaskService.solveSQ({
@@ -63,7 +64,7 @@ const SolveBlock = () => {
         if(!checkArraysIsNotEmpty() ||
             StringToObj.stringIntoStringArray(taskParams.arr1).length === 0 ||
             StringToObj.stringIntoStringArray(taskParams.arr2).length === 0 ){
-            openErr("Некорректные данные!");
+            openErr(strData.errorDataFront);
         }
         else
             TaskService.solveSUB({

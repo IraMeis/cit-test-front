@@ -81,16 +81,22 @@ const CommonTaskStructure = ({type, typeLabel, uuid, time, arr1, arr2, matrix}) 
                 </div>)}
 
                 {arr1 &&
-                (<div>
+                (<div className="text-break">
                     <strong>Массив подстрок:</strong>
-                    <div>{arr1.join(' ')}</div>
+                    <div>{arr1.join(' ').length > 200 ?
+                        arr1.join(' ').substring(0, 200)+'...' :
+                        arr1.join(' ')}
+                    </div>
                     <Separator.Separator1/>
                 </div>)}
 
                 {arr2 &&
-                (<div>
+                (<div className="text-break">
                     <strong>Массив строк:</strong>
-                    <div>{arr2.join(' ')}</div>
+                    <div>{arr2.join(' ').length > 200 ?
+                        arr2.join(' ').substring(0, 200)+'...' :
+                        arr2.join(' ')}
+                    </div>
                     <Separator.Separator1/>
                 </div>)}
 

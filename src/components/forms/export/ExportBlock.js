@@ -6,6 +6,7 @@ import fileDownload from 'js-file-download';
 import ModalFilterContext from "../../context/ModalFilterContext";
 import StringToObj from "../../../util/functions/StringToObj";
 import TaskService from "../../../service/task.service";
+import strData from "../../../util/stringMessages.json";
 
 const ExportBlock = () => {
 
@@ -24,7 +25,7 @@ const ExportBlock = () => {
 
     function setErrorResp (err) {
         if(err.response && err.response.status && err.response.status === 406)
-            openErr("Server reports of getting incorrect data");
+            openErr(strData.errorDataBackIn);
         else
             openErr(err.message);
     }
@@ -53,7 +54,7 @@ const ExportBlock = () => {
             if(!checkArraysIsNotEmpty() ||
                 StringToObj.stringIntoStringArray(taskParams.arr1).length === 0 ||
                 StringToObj.stringIntoStringArray(taskParams.arr2).length === 0 ){
-                openErr("Некорректные данные!");
+                openErr(strData.errorDataFront);
             }
             else
                 return TaskService.createTaskSUB({
@@ -61,7 +62,7 @@ const ExportBlock = () => {
                     array2 : StringToObj.stringIntoStringArray(taskParams.arr2),
                     typeCode : types.substring.code})
                     .then((response) => {
-                        openOk("Данные сохранены!");
+                        openOk(strData.infoDataSaved);
                     }).catch((err) => {
                         setErrorResp(err);
                     });
@@ -69,14 +70,14 @@ const ExportBlock = () => {
         else if (taskParams.taskType == types.square.code) {
             if(!checkMatrixIsNotEmpty() ||
                 StringToObj.stringIntoMatrix(taskParams.inputMatrix).length === 0){
-                openErr("Некорректные данные!");
+                openErr(strData.errorDataFront);
             }
             else
                 return TaskService.createTaskSQ({
                     inputMatrix: StringToObj.stringIntoMatrix(taskParams.inputMatrix),
                     typeCode: types.square.code
                 }).then((response) => {
-                        openOk("Данные сохранены!");
+                        openOk(strData.infoDataSaved);
                     }).catch((err) => {
                         setErrorResp(err);
                     });
@@ -88,7 +89,7 @@ const ExportBlock = () => {
             if(!checkArraysIsNotEmpty() ||
                 StringToObj.stringIntoStringArray(taskParams.arr1).length === 0 ||
                 StringToObj.stringIntoStringArray(taskParams.arr2).length === 0 ){
-                openErr("Некорректные данные!");
+                openErr(strData.errorDataFront);
             }
             else
                 return FileService.downloadFileSUB({
@@ -104,7 +105,7 @@ const ExportBlock = () => {
         else if (taskParams.taskType == types.square.code) {
             if(!checkMatrixIsNotEmpty() ||
                 StringToObj.stringIntoMatrix(taskParams.inputMatrix).length === 0){
-                openErr("Некорректные данные!");
+                openErr(strData.errorDataFront);
             }
             else
                 return FileService.downloadFileSQ({

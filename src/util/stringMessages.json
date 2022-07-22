@@ -1,0 +1,6 @@
+{
+  "errorDataFront": "Incorrect data, try something else",
+  "errorDataBackIn": "Server reports of getting incorrect data",
+  "errorDataBackOut": "Got incorrect data from server",
+  "infoDataSaved": "Data saved"
+}
